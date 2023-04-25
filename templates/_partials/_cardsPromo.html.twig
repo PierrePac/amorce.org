@@ -1,0 +1,29 @@
+<div class="container-fluid row mt-5 pb-2">
+	{% for produit in produits %}
+		{% if produit.id <= 3  %}
+			{% for photo in photos %}
+				{% if photo.refProduit == produit %}
+					{% if photo.majorPicture == 1 %}
+						<div class="col-12 col-md-6 col-lg-4">
+							<div class="card bg-light" style="max-width: 540px; height: 100%">
+								<div class="row g-0">
+									<div class="col-lg-4">
+										<img src="{{photo.src}}" class="img-fluid rounded-start" alt="promo_pic">
+									</div>
+									<div class="col-lg-8">
+										<div class="card-body" style="max-height: 450px;">
+											<h5 class="card-title">{{produit.shortLibel}}</h5>
+											<p class="card-text ">{{produit.longLibel}}</p>
+											<button type="button" class="btn btn-outline-primary">{{produit.prixHt}} €</button>
+											<a type="button" class="btn btn-outline-primary mx-3" href="{{ path('produit', {slug: produit.slug}) }}">Découvrire</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					{% endif %}
+				{% endif %}
+			{% endfor %}
+		{% endif %}
+	{% endfor %}
+</div>

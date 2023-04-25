@@ -1,0 +1,91 @@
+
+// Récupérer tous les produits
+GET http://127.0.0.1:8000/api/produits
+
+###
+
+// Récupérer tous les produits de la catégorie 3
+GET http://127.0.0.1:8000/api/produits?idCategorie=3
+
+###
+
+// Récupérer le produit 1
+GET http://127.0.0.1:8000/api/produits/1
+
+###
+
+// Récupérer toutes les catégories
+GET https://127.0.0.1:8000/api/categories
+
+###
+
+// Récupérer toutes les sous catégories
+GET http://127.0.0.1:8000/api/categories
+
+###
+
+// Récupérer la catégorie 1
+GET http://127.0.0.1:8000/api/categories/1
+
+###
+
+// Récupérer toutes les photos
+GET http://127.0.0.1:8000/api/photos
+
+###
+
+// Récupérer les photos du produit 1
+GET http://127.0.0.1:8000/api/photos?refProduit=1
+
+###
+
+// Récupérer la photo principale du produit 1
+GET http://127.0.0.1:8000/api/photos?refProduit=1&majorPicture=true
+
+###
+
+// Modification du produit 1
+put http://127.0.0.1:8000/api/produits/1
+
+    {
+        "refProduit": "5030917298285"
+    }
+
+###
+
+
+POST http://127.0.0.1:8000/auth
+Content-Type: application/json
+
+{
+    "email": "admin@admin.fr",
+    "password": "admin"
+}
+
+
+###
+
+
+GET http://127.0.0.1:8000/api/produits
+Content-Type: application/json
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE2ODEyOTAzODUsImV4cCI6MTY4MTI5Mzk4NSwicm9sZXMiOlsiUk9MRV9BRE1JTiIsIlJPTEVfVVNFUiJdLCJ1c2VybmFtZSI6ImFkbWluQGFkbWluLmZyIn0.yGMbq4wNHfKPODwSKBikkBKnPj-4JPKGvd_FnSVQV_F2NLACJtcSqhps3a8Bgrn--Ni-rAk_HnAGHP56ua0qHgGEzYyzVFCTmAsnopHSKu1JIX23CJvlmEK0ZB_5SpXOWMvhaRxYOkygFjBAmOCjb0Yyxf9Bi2iQS4Vwd9KH92ThwG00NKEFmSm3JdWlONVt45DKXsm2SH0oUMrnYDefGyq-SDXUkOmqKGkBJSmYRM9NUXa3tZvE3maGcrqTbyk9DbCr0wqsdNgrzUyqiC1vO9iFPKids1tjBA6S4rQw-P8dugeCs2LrsZh1dMbZVnv17NRoaPlgQ0XMpHyMNnc48g
+
+
+
+###
+
+
+GET http://127.0.0.1:8000/api/produits
+
+
+###
+
+POST http://127.0.0.1:8000/api/token/refresh
+X-Skip-Interceptor: 'true'
+Content-Type: application/json
+
+{
+    "refresh_token": "8829ee799fda34ebcb52203552b029487e4513ec0b93300183bf330a573c0ba1608f8a66d67e8da65b6a68b0c4b8cff101a60691683cbacb1352fe588d1df9ec"
+}
+
+

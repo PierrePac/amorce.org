@@ -1,0 +1,120 @@
+<div class="row">
+	<div class="col-12 d-lg-none d-flex flex-row flex-wrap">
+		{% if categorie.sousCat == null %}
+			{% for cat in categories %}
+				{% if cat.sousCat == categorie %}
+					<a href="{{ path('categorie', {slug: cat.slug}) }}" class="link-primary mx-2 my-3" aria-current="page">
+						{{cat.nomination}}
+					</a>
+				{% endif %}
+			{% endfor %}
+		{% else %}
+
+			{% for cat in categories %}
+				{% if cat.sousCat == categorie.sousCat %}
+					<a href="{{ path('categorie', {slug: cat.slug}) }}" class="link-primary mx-2 my-3" aria-current="page">
+						{{cat.nomination}}
+					</a>
+				{% endif %}
+			{% endfor %}
+		{% endif %}
+	</div>
+</div>
+<div class="row">
+	<div class="col-3 d-none d-lg-block">
+		<div class="d-flex flex-column flex-shrink-0 p-3  bg-light" style="width: 280px;">
+			<a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto  text-decoration-none">
+				<svg class="bi me-2" width="40" height="32"></svg>
+				{% if categorie.sousCat == null %}
+					<span class="fs-4">{{categorie.nomination}}</span>
+				</a>
+				<hr>
+				<ul class="nav nav-pills flex-column mb-auto">
+					{% for cat in categories %}
+						{% if cat.sousCat == categorie %}
+							<li class="nav-item">
+								<a href="{{ path('categorie', {slug: cat.slug}) }}" class="nav-link" aria-current="page">
+									<svg class="bi me-2" width="16" height="16"></svg>
+									{{cat.nomination}}
+								</a>
+							</li>
+						{% endif %}
+					{% endfor %}
+				{% else %}
+					<span class="fs-4">{{categorie.sousCat.nomination}}</span>
+				</a>
+				<hr>
+				<ul class="nav nav-pills flex-column mb-auto">
+					{% for cat in categories %}
+						{% if cat.sousCat == categorie.sousCat %}
+							<li class="nav-item">
+								<a href="{{ path('categorie', {slug: cat.slug}) }}" class="nav-link" aria-current="page">
+									<svg class="bi me-2" width="16" height="16"></svg>
+									{{cat.nomination}}
+								</a>
+							</li>
+						{% endif %}
+					{% endfor %}
+				{% endif %}
+			</ul>
+		</div>
+	</div>
+	<div class="col-12 col-lg-9 mt-5">
+		<div class="row row-cols-1 row-cols-md-3 g-4">
+			{% if categorie.sousCat == null %}
+				{% for cat in categories %}
+					{% if cat.sousCat == categorie %}
+						{% for produit in produits %}
+							{% if cat == produit.idCategorie %}
+								{% for photo in photos %}
+									{% if produit == photo.refProduit %}
+										{% if photo.majorPicture == 1 %}
+											<div class="col">
+												<div class="card h-100">
+													<img src="{{asset(photo.src)}}" class="card-img-top" alt="produit">
+													<div class="card-body">
+														<h5 class="card-title">{{produit.shortLibel}}</h5>
+													</div>
+													<div class="card-footer text-end bg-white">
+														<p >{{produit.prixHt}} €</p>
+													
+														<a href="{{ path('produit', {slug: produit.slug}) }}" class="btn btn-outline-primary stretched-link">Découvrire</a>
+													</div>
+												</div>
+											</div>
+										{% endif %}
+									{% endif %}
+								{% endfor %}
+							{% endif %}
+						{% endfor %}
+						{% else %}
+					{% endif %}
+				{% endfor %}
+			{% else %}
+				{% for produit in produits %}
+					{% if produit.idCategorie == categorie %}
+						{% for photo in photos %}
+							{% if photo.refProduit == produit %}
+								{% if photo.majorPicture == 1 %}
+									<div class="col">
+										<div class="card h-100">
+											<img src="{{asset(photo.src)}}" class="card-img-top" alt="produit">
+											<div class="card-body">
+												<h5 class="card-title">{{produit.shortLibel}}</h5>
+											</div>
+											<div class="card-footer text-end bg-white">
+											{{ dump(produit.slug) }}
+												<p >{{produit.prixHt}} €</p>
+												<a href="{{ path('produit', {slug: produit.slug}) }}" class="btn btn-outline-primary stretched-link">Découvrire</a>
+											</div>
+										</div>
+									</div>
+								{% endif %}
+							{% endif %}
+						{% endfor %}
+					{% endif %}
+				{% endfor %}
+			{% endif %}
+		</div>
+	</div>
+</div>

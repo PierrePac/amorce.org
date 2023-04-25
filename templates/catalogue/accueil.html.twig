@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil
+{% endblock %}
+
+{% block body %}
+
+	{% include '_partials/_carousel.html.twig' %}
+    {% include '_partials/_cardsPromo.html.twig' %}
+    {% include '_partials/_shipmentInfo.html.twig' %}
+    {% include '_partials/_produitsPhares.html.twig' %}
+    {% include '_partials/_baniereLivraison.html.twig' %}
+    
+    {# {% include '_partials/_bandeauCategories.html.twig' %} #}
+    {{ render(controller('App\\Controller\\NavController::bandeau' )) }}
+
+	{% include '_partials/_produitsPopulaires.html.twig' %}
+    {% include '_partials/_temoignageClient.html.twig' %}
+    {% include '_partials/_marques.html.twig' %}
+
+{% endblock %}

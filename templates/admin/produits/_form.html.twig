@@ -1,0 +1,13 @@
+<div class="container-fluid col col-9 mx-auto">
+	<div>
+		{{form_start(produitForm)}}
+		{{form_row(produitForm.refProduit)}}
+		{{form_row(produitForm.shortLibel)}}
+		{{form_row(produitForm.longLibel)}}
+		{{form_row(produitForm.prixHt)}}
+		{{form_row(produitForm.idCategorie)}}
+		{{form_row(produitForm.images)}}
+		<button type="submit" class="btn btn-outline-primary">{{button_label|default('Ajouter')}}</button>
+		{{form_end(produitForm)}}
+	</div>
+</div>

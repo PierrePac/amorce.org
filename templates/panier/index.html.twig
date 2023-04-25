@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Votre Panier
+{% endblock %}
+
+{% block body %}
+	<div class="container col col-9 mx-auto">
+		<section class="p-3">
+			<h1>Panier</h1>
+		</section>
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Produit</th>
+					<th>Prix</th>
+					<th>Quantité</th>
+					<th>Total</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for element in dataPanier %}
+					<tr>
+						<td>{{ element.produit.shortLibel }}</td>
+						<td>{{ element.produit.prixHt }}
+							€</td>
+						<td>{{ element.quantite }}</td>
+						<td>{{ element.quantite * element.produit.prixHt }}
+							€</td>
+						<td>
+							<a href="{{path("panier_add", {id: element.produit.id})}}" class="btn btn-success">
+								<i class="fa-solid fa-circle-plus"></i>
+							</a>
+							<a href="{{path("panier_remove", {id: element.produit.id})}}" class="btn btn-warning">
+								<i class="fa-solid fa-circle-minus" style="color: #ffffff;"></i>
+							</a>
+							<a href="{{path("panier_delete", {id: element.produit.id})}}" class="btn btn-danger">
+								<i class="fa-sharp fa-solid fa-circle-xmark" style="color: #ffffff;"></i>
+							</a>
+						</td>
+					</tr>
+				{% else %}
+					<tr>
+						<td colspan="5" class="text-center">Votre panier est vide</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+			<tfoot>
+				<tr>
+					<td colspan="3">Total</td>
+					<td>{{ total }}
+						€</td>
+					<td>
+						<a href="{{path("panier_delete_all")}}" class="btn btn-danger">
+							<i class="fa-sharp fa-solid fa-circle-xmark" style="color: #ffffff;"></i>
+						</a>
+					</td>
+				</tr>
+			</tfoot>
+		</table>
+		<a href="{{ path('panier_validation') }}" class="btn btn-outline-primary" type="submit">Validrer ma commande</a>
+
+	</div>
+{% endblock %}

@@ -1,0 +1,81 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Valider votre commande
+{% endblock %}
+
+{% block body %}
+	<div class="container col col-9 mx-auto">
+		<section class="p-3">
+			<h1>votre commande</h1>
+		</section>
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Produit</th>
+					<th>Prix</th>
+					<th>Quantité</th>
+					<th>Total</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for element in dataPanier %}
+					<tr>
+						<td>{{ element.produit.shortLibel }}</td>
+						<td>{{ element.produit.prixHt }}
+							€</td>
+						<td>{{ element.quantite }}</td>
+						<td>{{ element.quantite * element.produit.prixHt }}
+							€</td>
+					</tr>
+				{% else %}
+					<tr>
+						<td colspan="4" class="text-center">Votre panier est vide</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+			<tfoot>
+				<tr>
+					<td colspan="3">Total</td>
+					<td>{{ total }}
+						€</td>
+				</tr>
+			</tfoot>
+		</table>
+		<div class="row">
+			<div class="col-sm-6 my-2">
+				<div class="card h-100 my-2">
+					<div class="card-body">
+						<h5 class="card-title">Information personnelles</h5>
+						<div class="d-flex flex-column flex-nowrap">
+							<div class="row ps-3">
+								<p class="col-6 col-lg-4">Nom:</p>
+								<p class="col-6 col-lg-6">{{user.nom}}</p>
+							</div>
+							<div class="row ps-3">
+								<p class="col-6 col-lg-4">Prénom</p>
+								<p class="col-6 col-lg-6">{{user.prenom}}</p>
+							</div>
+							<div class="row ps-3">
+								<p class="col-6 col-lg-4">Téléphone:</p>
+								<p class="col-6 col-lg-6">{{user.telephone}}</p>
+							</div>
+							<div class="row ps-3">
+								<p class="col-6 col-lg-4">E-mail:</p>
+								<p class="col-6 col-lg-6">{{user.email}}</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-6 my-2">
+				<div class="card h-100 my-2">
+					<div class="card-body">
+						<h5 class="card-title">Coordonnées</h5>
+						<div class="container-fluid col col-9 mx-auto">
+							<div>
+								{# modal Ajout d'adresse#}
+								{% include "panier/_formAdresse.html.twig" %}
+								{% include "panier/_form.html.twig" %}
+							</div>
+						</div>
+					{% endblock %}

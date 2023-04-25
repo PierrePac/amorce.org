@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>
+			{% block title %}Bienvenue !
+			{% endblock %}
+		</title>
+		<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+		<meta
+		name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<!-- Feuilles de styles -->
+		<link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css')}}">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.3.5/css/swiper.min.css" integrity="sha512-FCU4ZL4ubM4eDxvQQ9SqMmH+UQ9t0noKHj/cfky4whdWnyBgp+NF2ykUBgsyx8Iv+XtM3aXZ8jmFs4uLnT+Vng==" crossorigin="anonymous" referrerpolicy="no-referrer"/> {% block stylesheets %}{% endblock %}
+		<link rel="stylesheet" href="{{ asset('assets/css/styles.css')}}">
+		<link
+		rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+
+	</head>
+	<body class="col col-lg-9 mx-auto bg-light">
+	
+
+		{# {% include '_partials/_nav.html.twig' %} #}
+		{{ render(controller('App\\Controller\\NavController::nav' )) }}
+
+		{% block body %}{% endblock %}
+
+		{% include '_partials/_footer.html.twig' %}
+
+		<!-- Fichiers JS -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha512-+NqPlbbtM1QqiK8ZAo4Yrj2c4lNQoGv8P79DPtKzj++l5jnN39rHA/xsqn8zE9l0uSoxaCdrOgFs6yjyfbBxSg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.3.5/js/swiper.min.js" integrity="sha512-NdZyIQYjul6RuB0vCoq9ec+xqTO2riVTZAZf9YM3BHkkcJxFTq7z9FAK3PXP+XYs5zQRuOycmL5GdwD85t2T+Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+		<script src="{{asset('assets/js/bootstrap.bundle.min.js')}}" defer></script>
+		<script src="{{asset('assets/js/scripts.js')}}" defer></script>
+		{% block javascripts %}{% endblock %}
+	</body>
+</html>

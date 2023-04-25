@@ -1,0 +1,59 @@
+
+<div class="row">
+	<div class="col-12 col-md-6">
+		<div id="carouselProduit" class="carousel slide" data-bs-ride="carousel">
+			<div class="carousel-indicators">
+				<button type="button" data-bs-target="#carouselProduit" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+				<button type="button" data-bs-target="#carouselProduit" data-bs-slide-to="1" aria-label="Slide 2"></button>
+				<button type="button" data-bs-target="#carouselProduit" data-bs-slide-to="2" aria-label="Slide 3"></button>
+				<button type="button" data-bs-target="#carouselProduit" data-bs-slide-to="3" aria-label="Slide 4"></button>
+				<button type="button" data-bs-target="#carouselProduit" data-bs-slide-to="4" aria-label="Slide 5"></button>
+			</div>
+			<div class="carousel-inner">
+				{% for photo in photos %}
+					{% if photo.refProduit == produit %}
+						{% if photo.majorPicture == 1 %}
+							<div class="carousel-item active">
+								<img src="{{asset(photo.src)}}" class="d-block img-fluid mx-auto" style="max-height: 400px;" alt={{produit.shortLibel}}>
+							</div>
+						{% else %}
+							<div class="carousel-item">
+								<img src="{{asset(photo.src)}}" class="d-block img-fluid mx-auto" style="max-height: 400px;" alt={{produit.shortLibel}}>
+							</div>
+						{% endif %}
+					{% endif %}
+				{% endfor %}
+			</div>
+			<button class="carousel-control-prev" type="button" data-bs-target="#carouselProduit" data-bs-slide="prev">
+				<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+				<span class="visually-hidden">Previous</span>
+			</button>
+			<button class="carousel-control-next" type="button" data-bs-target="#carouselProduit" data-bs-slide="next">
+				<span class="carousel-control-next-icon" aria-hidden="true"></span>
+				<span class="visually-hidden">Next</span>
+			</button>
+		</div>
+	</div>
+	<div class="col-12 col-md-6">
+		<h2>{{produit.shortLibel}}</h2>
+		<p>R{{produit.longLibel}}</p>
+		<p class="text-primary">{{produit.prixHt}} €</p>
+		<form action="">
+			<div class="input-group mb-3">
+				<select class="form-select" id="inputGroupSelect02" style="max-width: 150px;">
+					<option selected value="0">Quantité</option>
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="5">5</option>
+					<option value="6">6</option>
+					<option value="7">7</option>
+					<option value="8">8</option>
+					<option value="9">9</option>
+				</select>
+				<a href="{{ path('panier_add', {id: produit.id }) }}" type="submit" class="btn btn-outline-primary">Ajouter au panier</a>
+			</div>
+		</form>
+	</div>
+</div>
